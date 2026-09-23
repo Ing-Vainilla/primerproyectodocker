@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: node_hola_mundo
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+    volumes:
+      # Sincroniza los cambios locales de src con el contenedor
+      - ./src:/usr/src/app
+      # Evita sobreescribir las dependencias del contenedor con las de tu máquina local
+      - /usr/src/app/node_modules
+    restart: always
